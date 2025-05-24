@@ -7,7 +7,7 @@ import { Zap } from "lucide-react";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b bg-white dark:bg-zinc-900 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b backdrop-blur mb-4">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Left: Brand and mobile menu */}
         <div className="flex items-center gap-2">

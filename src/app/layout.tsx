@@ -58,6 +58,7 @@ export default function RootLayout({
   return (
     <html>
       <body>
+        {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
         <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>
     </html>
