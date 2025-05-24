@@ -5,7 +5,9 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
-  "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   // Tailwind CSS Autocomplete, add more if used in projects
   "tailwindCSS.classAttributes": [
     "class",
@@ -13,5 +15,16 @@
     "classNames",
     "containerClassName"
   ],
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.configPath": ".prettierrc.js"
 }
