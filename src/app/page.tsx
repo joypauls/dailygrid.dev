@@ -33,13 +33,13 @@ export default function HomePage() {
         <title>Hi</title>
       </Head>
       <Navbar />
-      <section className='bg-white'>
+      <section className='bg-white dark:bg-zinc-900'>
         <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
 
           {/* <DonutChart /> */}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 w-full">
-            <Card className="bg-white dark:bg-gray-900 shadow-md rounded-md">
+            <Card className="bg-white dark:bg-zinc-900 shadow-md rounded-md">
               <CardHeader>
                 <CardTitle className="font-semibold text-lg">Renewables</CardTitle>
                 <CardDescription>Real-time</CardDescription>
@@ -49,7 +49,7 @@ export default function HomePage() {
                 {/* <div className="text-xs text-muted-foreground">Updated 5 min ago</div> */}
               </CardContent>
             </Card>
-            <Card className="bg-white dark:bg-gray-900 shadow-md rounded-md">
+            <Card className="bg-white dark:bg-zinc-900 shadow-md rounded-md">
               <CardHeader>
                 <CardTitle className="font-semibold text-lg">Fossil Fuels</CardTitle>
                 <CardDescription>Real-time</CardDescription>
@@ -59,7 +59,7 @@ export default function HomePage() {
                 {/* <div className="text-xs text-muted-foreground">Updated 5 min ago</div> */}
               </CardContent>
             </Card>
-            <Card className="bg-white dark:bg-gray-900 shadow-md rounded-md">
+            <Card className="bg-white dark:bg-zinc-900 shadow-md rounded-md">
               <CardHeader>
                 <CardTitle className="font-semibold text-lg">Carbon Intensity</CardTitle>
                 <CardDescription>Real-time</CardDescription>
@@ -72,17 +72,23 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 gap-4 p-6 w-full h-[550px]">
-          <Card className="bg-white dark:bg-gray-900 shadow-md rounded-md py-4">
+          <Card className="bg-white dark:bg-zinc-900 shadow-md rounded-md py-4">
           <DonutChart /> 
           </Card>
           </div>
 
-          <footer className='absolute bottom-2 text-gray-700'>
+          <div className="grid grid-cols-1 gap-4 p-6 w-full h-[550px]">
+          <Card className="bg-white dark:bg-zinc-900 shadow-md rounded-md py-4">
+          <DonutChart /> 
+          </Card>
+          </div>
+
+          {/* <footer className='text-gray-700'>
             © {new Date().getFullYear()} By{' '}
             <UnderlineLink href='https://joypaulsen.com'>
               Joy Paulsen
             </UnderlineLink>
-          </footer>
+          </footer> */}
         </div>
       </section>
     </main>

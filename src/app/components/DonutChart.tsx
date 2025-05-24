@@ -83,7 +83,7 @@ export default function GenerationMixDonut() {
 
 
         <PieChart>
-          <text x="2%" y="5%" textAnchor="left" dominantBaseline="left" className="font-semibold text-lg">
+          <text x="2%" y="5%" textAnchor="left" dominantBaseline="left" className="font-semibold text-lg dark:text-white">
             Energy Mix
           </text>
           <text x="2%" y="10%" textAnchor="left" dominantBaseline="left" className="font-normal text-sm !text-muted-foreground">
