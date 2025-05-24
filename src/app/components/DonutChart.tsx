@@ -19,7 +19,7 @@ const energyMixData = [
   { source: 'Nuclear', value: 7 },
 ];
 
-const COLORS = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
+const COLORS = ['#589bcc', '#f59d51', '#54cc54', '#e05151', '#a57fc9', '#9e736a'];
 
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
@@ -83,10 +83,10 @@ export default function GenerationMixDonut() {
 
 
         <PieChart>
-          <text x="2%" y="5%" textAnchor="left" dominantBaseline="left" className="font-normal text-lg">
+          <text x="2%" y="5%" textAnchor="left" dominantBaseline="left" className="font-semibold text-lg">
             Energy Mix
           </text>
-          <text x="2%" y="10%" textAnchor="left" dominantBaseline="left" className="font-normal text-sm text-muted-foreground">
+          <text x="2%" y="10%" textAnchor="left" dominantBaseline="left" className="font-normal text-sm !text-muted-foreground">
             Percentage of Energy Sources
           </text>
           <Pie

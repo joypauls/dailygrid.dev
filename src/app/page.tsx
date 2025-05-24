@@ -8,9 +8,10 @@ import ArrowLink from '@/components/links/ArrowLink';
 import ButtonLink from '@/components/links/ButtonLink';
 import UnderlineLink from '@/components/links/UnderlineLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 
 import DonutChart from '@/app/components/DonutChart';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Navbar } from '@/app/components/Navbar';
 
 /**
  * SVGR Support
@@ -31,6 +32,7 @@ export default function HomePage() {
       <Head>
         <title>Hi</title>
       </Head>
+      <Navbar />
       <section className='bg-white'>
         <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
 
@@ -39,27 +41,27 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 w-full">
             <Card className="bg-white dark:bg-gray-900 shadow-md rounded-md">
               <CardHeader>
-                <CardTitle className="font-normal text-lg">Carbon Intensity</CardTitle>
+                <CardTitle className="font-semibold text-lg">Renewables</CardTitle>
                 <CardDescription>Real-time</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-normal">382 gCO₂/kWh</div>
+                <div className="text-2xl font-normal">10%</div>
                 {/* <div className="text-xs text-muted-foreground">Updated 5 min ago</div> */}
               </CardContent>
             </Card>
             <Card className="bg-white dark:bg-gray-900 shadow-md rounded-md">
               <CardHeader>
-                <CardTitle className="font-normal text-lg">Carbon Intensity</CardTitle>
+                <CardTitle className="font-semibold text-lg">Fossil Fuels</CardTitle>
                 <CardDescription>Real-time</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-normal">382 gCO₂/kWh</div>
+                <div className="text-2xl font-normal">55%</div>
                 {/* <div className="text-xs text-muted-foreground">Updated 5 min ago</div> */}
               </CardContent>
             </Card>
             <Card className="bg-white dark:bg-gray-900 shadow-md rounded-md">
               <CardHeader>
-                <CardTitle className="font-normal text-lg">Carbon Intensity</CardTitle>
+                <CardTitle className="font-semibold text-lg">Carbon Intensity</CardTitle>
                 <CardDescription>Real-time</CardDescription>
               </CardHeader>
               <CardContent>
