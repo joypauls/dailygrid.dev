@@ -9,9 +9,14 @@ import {
   ResponsiveContainer,
   Cell,
   LabelList,
+  CartesianGrid,
 } from "recharts";
+import { useTheme } from "next-themes";
+import { useMemo, useState } from "react";
 
-const energyMixData = [
+const TOTAL_MW = 100_000;
+
+const rawData = [
   { source: "Coal", value: 35 },
   { source: "Gas", value: 25 },
   { source: "Wind", value: 15 },
@@ -29,46 +34,109 @@ const COLORS = {
   Nuclear: "#9e736a",
 };
 
-export default function GenerationMixBarChart() {
+export default function GenerationMixBar() {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
+  const labelColor = isDark ? "#e2e8f0" : "#334155";
+  const gridColor = isDark ? "#334155" : "#e2e8f0";
+  const tooltipBg = isDark ? "#1e293b" : "#ffffff";
+  const tooltipText = isDark ? "#f1f5f9" : "#1e293b";
+
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const sortedData = useMemo(
+    () =>
+      rawData
+        .slice()
+        .sort((a, b) => b.value - a.value)
+        .map((d) => ({
+          ...d,
+          mw: Math.round((d.value / 100) * TOTAL_MW),
+        })),
+    [],
+  );
+
   return (
-    // <div className="w-full bg-white dark:bg-zinc-900 rounded-xl shadow p-4">
-    //   <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-    //     Generation Mix
-    //   </h2>
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart
-        data={energyMixData}
-        layout="vertical"
-        margin={{ top: 10, right: 40, left: 40, bottom: 10 }}
-      >
-        <XAxis type="number" hide domain={[0, 40]} />
-        <YAxis
-          type="category"
-          dataKey="source"
-          tick={{ fill: "#000", fontSize: 12 }}
-          width={80}
-        />
-        <Tooltip
-          contentStyle={{ backgroundColor: "#111827", border: "none" }}
-          labelStyle={{ color: "#e5e7eb" }}
-          itemStyle={{ color: "#e5e7eb" }}
-          formatter={(value: number) => `${value}%`}
-        />
-        <Bar dataKey="value" radius={[0, 0, 0, 0]} barSize={50}>
-          {energyMixData.map((entry, index) => (
-            <Cell
-              key={index}
-              fill={COLORS[entry.source as keyof typeof COLORS]}
-            />
-          ))}
-          <LabelList
-            dataKey="value"
-            position="right"
-            formatter={(v) => `${v}%`}
+    <div className="w-full h-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={sortedData}
+          layout="vertical"
+          barCategoryGap="12%"
+          margin={{ top: 10, right: 24, left: 60, bottom: 10 }}
+        >
+          <CartesianGrid
+            stroke={gridColor}
+            horizontal={false}
+            strokeDasharray="3 3"
           />
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
-    // </div>
+          <XAxis type="number" hide domain={[0, 40]} />
+          <YAxis
+            type="category"
+            dataKey="source"
+            width={35}
+            tick={({ x, y, payload, index }) => {
+              const isActive = index === activeIndex;
+              return (
+                <text
+                  x={x}
+                  y={y + 5}
+                  textAnchor="end"
+                  fill={isActive ? "#10b981" : labelColor}
+                  fontWeight={isActive ? 700 : 500}
+                  fontSize={14}
+                >
+                  {payload.value}
+                </text>
+              );
+            }}
+          />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: tooltipBg,
+              color: tooltipText,
+              border: "none",
+              borderRadius: 8,
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+              fontSize: "0.875rem",
+              padding: "0.5rem 0.75rem",
+            }}
+            labelStyle={{ display: "none" }}
+            itemStyle={{ color: tooltipText }}
+            formatter={(_: any, __: any, item: any) => {
+              const mw = item?.payload?.mw ?? 0;
+              return [
+                `${item.payload.value}% \n ${mw.toLocaleString()} MW`,
+                "",
+              ];
+            }}
+          />
+          <Bar
+            dataKey="value"
+            radius={[0, 0, 0, 0]}
+            barSize={30}
+            isAnimationActive={true}
+            // onMouseEnter={(_, index) => setActiveIndex(index)}
+            // onMouseLeave={() => setActiveIndex(null)}
+          >
+            {sortedData.map((entry, index) => {
+              const baseColor = COLORS[entry.source as keyof typeof COLORS];
+              const fill = index === activeIndex ? `${baseColor}cc` : baseColor;
+              return <Cell key={`cell-${index}`} fill={fill} />;
+            })}
+            <LabelList
+              dataKey="value"
+              position="right"
+              formatter={(v) => `${v}%`}
+              fill={labelColor}
+              fontSize={13}
+              fontWeight={500}
+              offset={8}
+            />
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
