@@ -133,7 +133,7 @@ export default function HomePage() {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 p-4 w-full">
+          <div className="grid grid-cols-1 gap-4 p-4 w-full hidden md:block">
             <Card className="@container/card">
               <CardHeader className="flex items-start">
                 <CardTitle className="font-semibold">Generation Mix</CardTitle>
@@ -172,7 +172,7 @@ export default function HomePage() {
           </div>
           <div className="flex items-center text-sm">
             Data from
-            <UnderlineLink href="https://joypaulsen.com" className="ml-1">
+            <UnderlineLink href="https://www.eia.gov/" className="ml-1">
               Energy Information Administration
             </UnderlineLink>
           </div>

@@ -23,6 +23,7 @@ const rawData = [
   { source: "Solar", value: 10 },
   { source: "Hydro", value: 8 },
   { source: "Nuclear", value: 7 },
+  { source: "Other", value: 3 },
 ];
 
 const COLORS = {
@@ -32,6 +33,7 @@ const COLORS = {
   Solar: "#e05151",
   Hydro: "#a57fc9",
   Nuclear: "#9e736a",
+  Other: "#dea4de",
 };
 
 const CustomTooltip = ({ active, payload }: any) => {
