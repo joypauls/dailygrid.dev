@@ -163,7 +163,7 @@ export default function HomePage() {
         </div>
 
         {/* footer */}
-        <footer className="w-full flex flex-col items-center justify-center p-4">
+        <footer className="w-full flex flex-col items-center justify-center p-4 mt-20">
           <div className="flex items-center text-sm">
             Built by
             <UnderlineLink href="https://joypaulsen.com" className="ml-1">

@@ -7,11 +7,10 @@ import { Zap } from "lucide-react";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b backdrop-blur mb-4">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+    <header className="sticky top-0 z-50 border-b backdrop-blur mb-4 flex justify-center">
+      <div className="w-full max-w-7xl px-6 py-3 flex items-center justify-between">
         {/* Left: Brand and mobile menu */}
         <div className="flex items-center gap-2">
-          <MobileNav />
           <Link
             href="/"
             className="flex items-center gap-1 font-semibold text-lg"
@@ -22,20 +21,23 @@ export function Navbar() {
         </div>
 
         {/* Right: desktop nav + theme toggle */}
-        <div className="hidden md:flex items-center gap-4">
-          <Link
-            href="/about"
-            className="text-sm text-muted-foreground hover:underline"
-          >
-            About
-          </Link>
-          <a
-            href="https://github.com/youruser/gridpulse.dev"
-            className="text-sm text-muted-foreground hover:underline"
-            target="_blank"
-          >
-            GitHub
-          </a>
+        <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4">
+            <Link
+              href="/about"
+              className="text-sm text-muted-foreground hover:underline"
+            >
+              About
+            </Link>
+            <a
+              href="https://github.com/youruser/gridpulse.dev"
+              className="text-sm text-muted-foreground hover:underline"
+              target="_blank"
+            >
+              GitHub
+            </a>
+          </div>
+          <MobileNav />
           <ThemeToggle />
         </div>
       </div>

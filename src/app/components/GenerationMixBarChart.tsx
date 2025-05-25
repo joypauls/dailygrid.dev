@@ -34,6 +34,21 @@ const COLORS = {
   Nuclear: "#9e736a",
 };
 
+const CustomTooltip = ({ active, payload }: any) => {
+  if (!active || !payload || !payload.length) return null;
+
+  const item = payload[0].payload;
+  return (
+    <div className="rounded bg-white dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-800 dark:text-zinc-100 shadow">
+      <div className="font-medium">{item.source}</div>
+      <div>{item.value}%</div>
+      <div className="text-xs text-muted-foreground">
+        {item.mw.toLocaleString()} MW
+      </div>
+    </div>
+  );
+};
+
 export default function GenerationMixBar() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
@@ -92,7 +107,7 @@ export default function GenerationMixBar() {
               );
             }}
           />
-          <Tooltip
+          {/* <Tooltip
             contentStyle={{
               backgroundColor: tooltipBg,
               color: tooltipText,
@@ -106,12 +121,10 @@ export default function GenerationMixBar() {
             itemStyle={{ color: tooltipText }}
             formatter={(_: any, __: any, item: any) => {
               const mw = item?.payload?.mw ?? 0;
-              return [
-                `${item.payload.value}% \n ${mw.toLocaleString()} MW`,
-                "",
-              ];
+              return [`${item.payload.value}% ${mw.toLocaleString()} MW`, ""];
             }}
-          />
+          /> */}
+          <Tooltip content={<CustomTooltip />} />
           <Bar
             dataKey="value"
             radius={[0, 0, 0, 0]}
