@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { MobileNav } from "@/app/components/MobileNav";
-import { Zap } from "lucide-react";
+import { Zap, Battery } from "lucide-react";
 
 export function Navbar() {
   return (
@@ -16,6 +16,7 @@ export function Navbar() {
             className="flex items-center gap-1 font-semibold text-lg"
           >
             <Zap className="w-5 h-5 text-green-500" />
+            {/* <Battery className="w-6 h-6 text-green-500" /> */}
             Grid Pulse
           </Link>
         </div>

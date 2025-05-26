@@ -26,6 +26,8 @@ const rawData = [
   { source: "Other", value: 3 },
 ];
 
+const rawDataMax = Math.max(...rawData.map((d) => d.value));
+
 const COLORS = {
   Coal: "#589bcc",
   Gas: "#f59d51",
@@ -33,7 +35,7 @@ const COLORS = {
   Solar: "#e05151",
   Hydro: "#a57fc9",
   Nuclear: "#9e736a",
-  Other: "#dea4de",
+  Other: "#dea4d8",
 };
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -55,7 +57,8 @@ export default function GenerationMixBar() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
-  const labelColor = isDark ? "#e2e8f0" : "#334155";
+  // const labelColor = isDark ? "#e2e8f0" : "#334155";
+  const labelColor = isDark ? "#fafafa" : "#09090b";
   const gridColor = isDark ? "#334155" : "#e2e8f0";
   const tooltipBg = isDark ? "#1e293b" : "#ffffff";
   const tooltipText = isDark ? "#f1f5f9" : "#1e293b";
@@ -83,25 +86,26 @@ export default function GenerationMixBar() {
           barCategoryGap="12%"
           margin={{ top: 10, right: 24, left: 60, bottom: 10 }}
         >
-          <CartesianGrid
+          {/* <CartesianGrid
             stroke={gridColor}
             horizontal={false}
             strokeDasharray="3 3"
-          />
-          <XAxis type="number" hide domain={[0, 40]} />
+          /> */}
+          <XAxis type="number" hide domain={[0, rawDataMax + 5]} />
           <YAxis
             type="category"
             dataKey="source"
             width={35}
             tick={({ x, y, payload, index }) => {
-              const isActive = index === activeIndex;
+              // const isActive = index === activeIndex;
               return (
                 <text
                   x={x}
                   y={y + 5}
                   textAnchor="end"
-                  fill={isActive ? "#10b981" : labelColor}
-                  fontWeight={isActive ? 700 : 500}
+                  // fill={isActive ? "#10b981" : labelColor}
+                  fill={labelColor}
+                  // fontWeight={isActive ? 700 : 500}
                   fontSize={14}
                 >
                   {payload.value}

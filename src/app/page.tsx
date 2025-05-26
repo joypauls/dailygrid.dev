@@ -3,6 +3,7 @@
 import Head from "next/head";
 import * as React from "react";
 import "@/lib/env";
+import { Clock, Calendar, RefreshCw } from "lucide-react";
 
 import ArrowLink from "@/components/links/ArrowLink";
 import ButtonLink from "@/components/links/ButtonLink";
@@ -28,14 +29,8 @@ import { Badge } from "@/components/ui/badge";
 import GenerationMixBarChart from "@/app/components/GenerationMixBarChart";
 import { Navbar } from "@/app/components/Navbar";
 
-/**
- * SVGR Support
- * Caveat: No React Props Type.
- *
- * You can override the next-env if the type is important to you
- * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
- */
-import Logo from "~/svg/Logo.svg";
+import data from "@/data/daily_energy_mix_latest.json";
+const latest = data.latest;
 
 // !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
 // Before you begin editing, follow all comments with `STARTERCONF`,
@@ -45,19 +40,37 @@ export default function HomePage() {
   return (
     <main>
       <Head>
-        <title>Hi</title>
+        <title></title>
       </Head>
       <Navbar />
       <section className="min-h-screen flex flex-col justify-between">
         <div className="layout relative flex flex-col items-center justify-center text-center">
           {/* <DonutChart /> */}
 
+          {/* <div className="grid grid-cols-1 gap-4 p-4 w-full">
+            <Card className="@container/card"> */}
+          <div className="flex flex-col sm:flex-row justify-start p-4 w-full">
+            <span className="flex items-center">
+              <Calendar className="w-6 h-6 pr-2" />
+              <p className="text-sm font-bold pr-2">Date:</p>
+              <p className="text-sm pr-6">{latest.date}</p>
+            </span>
+            <span className="flex items-center">
+              {/* <Clock className="w-6 h-6 pr-2" /> */}
+              <RefreshCw className="w-6 h-6 pr-2" />
+              <p className="text-sm font-bold pr-2">Updated:</p>
+              <p className="text-sm pr-6">{latest.updated}</p>
+            </span>
+          </div>
+          {/* </Card>
+          </div> */}
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 w-full">
             <Card className="@container/card">
               <CardHeader className="relative">
                 <CardDescription>Renewables</CardDescription>
                 <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-                  10.0%
+                  {latest.renewables.percent}%
                 </CardTitle>
                 <div className="absolute right-4 top-4">
                   {/* <Badge
@@ -71,7 +84,7 @@ export default function HomePage() {
               </CardHeader>
               <CardFooter className="flex-col items-start gap-1 text-sm">
                 <div className="line-clamp-1 flex gap-2 font-medium">
-                  1000 megawatts
+                  {latest.renewables.gigawatthours} GWh
                 </div>
                 <div className="text-muted-foreground">
                   Share of electricity generation
@@ -81,35 +94,9 @@ export default function HomePage() {
 
             <Card className="@container/card">
               <CardHeader className="relative">
-                <CardDescription>Fossil Fuels</CardDescription>
+                <CardDescription>Nuclear</CardDescription>
                 <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-                  55.1%
-                </CardTitle>
-                <div className="absolute right-4 top-4">
-                  {/* <Badge
-                    variant="outline"
-                    className="flex gap-1 rounded-lg text-xs"
-                  >
-                    <TrendingUpIcon className="size-3" />
-                    +12.5%
-                  </Badge> */}
-                </div>
-              </CardHeader>
-              <CardFooter className="flex-col items-start gap-1 text-sm">
-                <div className="line-clamp-1 flex gap-2 font-medium">
-                  1000 megawatts
-                </div>
-                <div className="text-muted-foreground">
-                  Share of electricity generation
-                </div>
-              </CardFooter>
-            </Card>
-
-            <Card className="@container/card">
-              <CardHeader className="relative">
-                <CardDescription>Carbon Intensity</CardDescription>
-                <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-                  1000
+                  {latest.nuclear.percent}%
                 </CardTitle>
                 <div className="absolute right-4 top-4">
                   {/* <Badge
@@ -124,10 +111,36 @@ export default function HomePage() {
               <CardFooter className="flex-col items-start gap-1 text-sm">
                 <div className="line-clamp-1 flex gap-2 font-medium">
                   {/* Trending up this month <TrendingUpIcon className="size-4" /> */}
-                  gCO2e/kWh
+                  {latest.nuclear.gigawatthours} GWh
                 </div>
                 <div className="text-muted-foreground">
-                  Visitors for the last 6 months
+                  Share of electricity generation
+                </div>
+              </CardFooter>
+            </Card>
+
+            <Card className="@container/card">
+              <CardHeader className="relative">
+                <CardDescription>Fossil Fuels</CardDescription>
+                <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
+                  {latest.fossil_fuels.percent}%
+                </CardTitle>
+                <div className="absolute right-4 top-4">
+                  {/* <Badge
+                    variant="outline"
+                    className="flex gap-1 rounded-lg text-xs"
+                  >
+                    <TrendingUpIcon className="size-3" />
+                    +12.5%
+                  </Badge> */}
+                </div>
+              </CardHeader>
+              <CardFooter className="flex-col items-start gap-1 text-sm">
+                <div className="line-clamp-1 flex gap-2 font-medium">
+                  {latest.fossil_fuels.gigawatthours} GWh
+                </div>
+                <div className="text-muted-foreground">
+                  Share of electricity generation
                 </div>
               </CardFooter>
             </Card>
@@ -173,7 +186,7 @@ export default function HomePage() {
           <div className="flex items-center text-sm">
             Data from
             <UnderlineLink href="https://www.eia.gov/" className="ml-1">
-              Energy Information Administration
+              U.S. Energy Information Administration
             </UnderlineLink>
           </div>
         </footer>
