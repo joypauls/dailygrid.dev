@@ -13,11 +13,11 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Link
             href="/"
-            className="flex items-center gap-1 font-semibold text-lg"
+            className="flex items-center gap-2 font-semibold text-lg"
           >
             <Zap className="w-5 h-5 text-green-500" />
             {/* <Battery className="w-6 h-6 text-green-500" /> */}
-            Grid Pulse
+            Daily Grid
           </Link>
         </div>
 
@@ -30,13 +30,13 @@ export function Navbar() {
             >
               About
             </Link>
-            <a
+            {/* <a
               href="https://github.com/youruser/gridpulse.dev"
               className="text-sm text-muted-foreground hover:underline"
               target="_blank"
             >
               GitHub
-            </a>
+            </a> */}
           </div>
           <MobileNav />
           <ThemeToggle />

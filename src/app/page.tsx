@@ -27,6 +27,7 @@ import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 import GenerationMixBarChart from "@/app/components/GenerationMixBarChart";
+import { GenerationTrendChart } from "@/app/components/GenerationTrendChart";
 import { Navbar } from "@/app/components/Navbar";
 
 import data from "@/data/daily_energy_mix_latest.json";
@@ -38,6 +39,7 @@ const barChartData = [
   "nuclear",
   "coal",
   "natural_gas",
+  "other",
 ].map((source: string) => {
   const item = latest[source as keyof typeof latest] as any;
   return {
@@ -185,6 +187,34 @@ export default function HomePage() {
                   className="aspect-auto h-[250px] w-full"
                 > */}
                 <GenerationMixBarChart latestMixData={barChartData} />
+                {/* </ChartContainer> */}
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 p-4 w-full hidden md:block">
+            <Card className="@container/card">
+              <CardHeader className="flex items-start">
+                <CardTitle className="font-semibold">Last 7 Days</CardTitle>
+                <CardDescription className="">
+                  Total electricity generation trend
+                </CardDescription>
+              </CardHeader>
+              {/* <div className="absolute right-4 top-4"> */}
+              {/* <Badge
+                    variant="outline"
+                    className="flex gap-1 rounded-lg text-xs"
+                  >
+                    <TrendingUpIcon className="size-3" />
+                    +12.5%
+                  </Badge> */}
+              {/* </div> */}
+              <CardContent className="h-[300px]">
+                {/* <ChartContainer
+                  config={chartConfig}
+                  className="aspect-auto h-[250px] w-full"
+                > */}
+                <GenerationTrendChart />
                 {/* </ChartContainer> */}
               </CardContent>
             </Card>
