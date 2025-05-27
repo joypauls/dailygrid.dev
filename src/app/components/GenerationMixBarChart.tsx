@@ -14,29 +14,36 @@ import {
 import { useTheme } from "next-themes";
 import { useMemo, useState } from "react";
 
-const TOTAL_MW = 100_000;
-
-const rawData = [
-  { source: "Coal", value: 35 },
-  { source: "Gas", value: 25 },
-  { source: "Wind", value: 15 },
-  { source: "Solar", value: 10 },
-  { source: "Hydro", value: 8 },
-  { source: "Nuclear", value: 7 },
-  { source: "Other", value: 3 },
+const BASIC_COLORS = [
+  "#589bcc",
+  "#f59d51",
+  "#54cc54",
+  "#e05151",
+  "#a57fc9",
+  "#9e736a",
+  "#dea4d8",
 ];
 
-const rawDataMax = Math.max(...rawData.map((d) => d.value));
+const FUN_COLORS = [
+  "#4f46e5",
+  "#ec4899",
+  "#f97316",
+  "#059669",
+  "#0ea5e9",
+  "#d97706",
+  "#8b5cf6",
+];
 
-const COLORS = {
-  Coal: "#589bcc",
-  Gas: "#f59d51",
-  Wind: "#54cc54",
-  Solar: "#e05151",
-  Hydro: "#a57fc9",
-  Nuclear: "#9e736a",
-  Other: "#dea4d8",
-};
+const COLORS = [
+  // "#14532d",
+  "#166534",
+  "#15803d",
+  "#16a34a",
+  "#22c55e",
+  "#4ade80",
+  "#86efac",
+  "#bbf7d0",
+];
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (!active || !payload || !payload.length) return null;
@@ -45,17 +52,19 @@ const CustomTooltip = ({ active, payload }: any) => {
   return (
     <div className="rounded bg-white dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-800 dark:text-zinc-100 shadow">
       <div className="font-medium">{item.source}</div>
-      <div>{item.value}%</div>
+      <div>{item.percent}%</div>
       <div className="text-xs text-muted-foreground">
-        {item.mw.toLocaleString()} MW
+        {item.gigawatthours} GWh
       </div>
     </div>
   );
 };
 
-export default function GenerationMixBar() {
+export default function GenerationMixBar({ latestMixData }: any) {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
+
+  const rawDataMax = Math.max(...latestMixData.map((d) => d.percent));
 
   // const labelColor = isDark ? "#e2e8f0" : "#334155";
   const labelColor = isDark ? "#fafafa" : "#09090b";
@@ -66,14 +75,7 @@ export default function GenerationMixBar() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const sortedData = useMemo(
-    () =>
-      rawData
-        .slice()
-        .sort((a, b) => b.value - a.value)
-        .map((d) => ({
-          ...d,
-          mw: Math.round((d.value / 100) * TOTAL_MW),
-        })),
+    () => latestMixData.slice().sort((a, b) => b.value - a.value),
     [],
   );
 
@@ -95,7 +97,7 @@ export default function GenerationMixBar() {
           <YAxis
             type="category"
             dataKey="source"
-            width={35}
+            width={50}
             tick={({ x, y, payload, index }) => {
               // const isActive = index === activeIndex;
               return (
@@ -132,7 +134,7 @@ export default function GenerationMixBar() {
           /> */}
           <Tooltip content={<CustomTooltip />} />
           <Bar
-            dataKey="value"
+            dataKey="percent"
             radius={[0, 0, 0, 0]}
             barSize={30}
             isAnimationActive={true}
@@ -140,12 +142,12 @@ export default function GenerationMixBar() {
             // onMouseLeave={() => setActiveIndex(null)}
           >
             {sortedData.map((entry, index) => {
-              const baseColor = COLORS[entry.source as keyof typeof COLORS];
+              const baseColor = COLORS[index];
               const fill = index === activeIndex ? `${baseColor}cc` : baseColor;
               return <Cell key={`cell-${index}`} fill={fill} />;
             })}
             <LabelList
-              dataKey="value"
+              dataKey="percent"
               position="right"
               formatter={(v) => `${v}%`}
               fill={labelColor}

@@ -31,6 +31,22 @@ import { Navbar } from "@/app/components/Navbar";
 
 import data from "@/data/daily_energy_mix_latest.json";
 const latest = data.latest;
+const barChartData = [
+  "solar",
+  "wind",
+  "hydro",
+  "nuclear",
+  "coal",
+  "natural_gas",
+].map((source: string) => {
+  const item = latest[source as keyof typeof latest] as any;
+  return {
+    source: item.source,
+    value: item.megawatthours,
+    gigawatthours: item.gigawatthours,
+    percent: item.percent,
+  };
+});
 
 // !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
 // Before you begin editing, follow all comments with `STARTERCONF`,
@@ -168,7 +184,7 @@ export default function HomePage() {
                   config={chartConfig}
                   className="aspect-auto h-[250px] w-full"
                 > */}
-                <GenerationMixBarChart />
+                <GenerationMixBarChart latestMixData={barChartData} />
                 {/* </ChartContainer> */}
               </CardContent>
             </Card>
