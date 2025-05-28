@@ -13,7 +13,7 @@ export function MobileNav() {
           <Menu className="h-5 w-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-64">
+      <SheetContent side="right" className="w-64">
         <div className="mt-4 space-y-4">
           <Link href="/" className="block text-lg font-medium hover:underline">
             Home

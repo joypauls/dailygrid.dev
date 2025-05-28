@@ -18,12 +18,17 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
+import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
+import { TrendingDownIcon, TrendingUpIcon, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 import GenerationMixBarChart from "@/app/components/GenerationMixBarChart";
@@ -49,6 +54,7 @@ const barChartData = [
     percent: item.percent,
   };
 });
+const historyData = data.history.total;
 
 // !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
 // Before you begin editing, follow all comments with `STARTERCONF`,
@@ -58,16 +64,16 @@ export default function HomePage() {
   return (
     <main>
       <Head>
-        <title></title>
+        <title>Daily Grid</title>
       </Head>
       <Navbar />
       <section className="min-h-screen flex flex-col justify-between">
-        <div className="layout relative flex flex-col items-center justify-center text-center">
+        <div className="flex flex-col items-center justify-center text-center">
           {/* <DonutChart /> */}
 
           {/* <div className="grid grid-cols-1 gap-4 p-4 w-full">
             <Card className="@container/card"> */}
-          <div className="flex flex-col sm:flex-row justify-start p-4 w-full">
+          <div className="flex flex-col sm:flex-row justify-start p-4 w-full max-w-5xl">
             <span className="flex items-center">
               <Calendar className="w-6 h-6 pr-2" />
               <p className="text-sm font-bold pr-2">Date:</p>
@@ -83,7 +89,7 @@ export default function HomePage() {
           {/* </Card>
           </div> */}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 w-full max-w-5xl">
             <Card className="@container/card">
               <CardHeader className="relative">
                 <CardDescription>Renewables</CardDescription>
@@ -98,6 +104,18 @@ export default function HomePage() {
                     <TrendingUpIcon className="size-3" />
                     +12.5%
                   </Badge> */}
+
+                  {/* <Popover>
+                    <PopoverTrigger asChild>
+                      <button>
+                        <Info className="w-4 h-4 text-muted-foreground" />
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-72 text-sm">
+                      This is a more accessible, touch-friendly way to show
+                      extra info.
+                    </PopoverContent>
+                  </Popover> */}
                 </div>
               </CardHeader>
               <CardFooter className="flex-col items-start gap-1 text-sm">
@@ -164,7 +182,7 @@ export default function HomePage() {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 p-4 w-full hidden md:block">
+          <div className="grid grid-cols-1 gap-4 p-4 w-full max-w-5xl hidden md:block">
             <Card className="@container/card">
               <CardHeader className="flex items-start">
                 <CardTitle className="font-semibold">Generation Mix</CardTitle>
@@ -186,18 +204,18 @@ export default function HomePage() {
                   config={chartConfig}
                   className="aspect-auto h-[250px] w-full"
                 > */}
-                <GenerationMixBarChart latestMixData={barChartData} />
+                <GenerationMixBarChart latestData={barChartData} />
                 {/* </ChartContainer> */}
               </CardContent>
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 p-4 w-full hidden md:block">
+          <div className="grid grid-cols-1 gap-4 p-4 w-full max-w-5xl hidden md:block">
             <Card className="@container/card">
               <CardHeader className="flex items-start">
-                <CardTitle className="font-semibold">Last 7 Days</CardTitle>
+                <CardTitle className="font-semibold">14-Day History</CardTitle>
                 <CardDescription className="">
-                  Total electricity generation trend
+                  Total electricity generated, all sources
                 </CardDescription>
               </CardHeader>
               {/* <div className="absolute right-4 top-4"> */}
@@ -214,7 +232,7 @@ export default function HomePage() {
                   config={chartConfig}
                   className="aspect-auto h-[250px] w-full"
                 > */}
-                <GenerationTrendChart />
+                <GenerationTrendChart historyData={historyData} />
                 {/* </ChartContainer> */}
               </CardContent>
             </Card>
@@ -222,14 +240,14 @@ export default function HomePage() {
         </div>
 
         {/* footer */}
-        <footer className="w-full flex flex-col items-center justify-center p-4 mt-20">
-          <div className="flex items-center text-sm">
+        <footer className="w-full flex flex-col items-center justify-center p-4 mt-20 text-xs md:text-sm">
+          <div className="flex items-center">
             Built by
             <UnderlineLink href="https://joypaulsen.com" className="ml-1">
               Joy Paulsen
             </UnderlineLink>
           </div>
-          <div className="flex items-center text-sm">
+          <div className="flex items-center">
             Data from
             <UnderlineLink href="https://www.eia.gov/" className="ml-1">
               U.S. Energy Information Administration
