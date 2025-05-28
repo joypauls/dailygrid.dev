@@ -60,7 +60,7 @@ export function GenerationTrendChart({ historyData }: any) {
   const fillColor = isDark ? "#121216" : "#ffffff";
 
   const yDomain = getNiceDomain(
-    historyData.map((d) => d.gigawatthours),
+    historyData.map((d: any) => d.gigawatthours),
     100,
   );
 

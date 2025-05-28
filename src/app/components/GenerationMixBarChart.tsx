@@ -64,7 +64,7 @@ export default function GenerationMixBar({ latestData }: any) {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
-  const rawDataMax = Math.max(...latestData.map((d) => d.percent));
+  const rawDataMax = Math.max(...latestData.map((d: any) => d.percent));
 
   // const labelColor = isDark ? "#e2e8f0" : "#334155";
   const labelColor = isDark ? "#fafafa" : "#09090b";
@@ -75,7 +75,7 @@ export default function GenerationMixBar({ latestData }: any) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const sortedData = useMemo(
-    () => latestData.slice().sort((a, b) => b.value - a.value),
+    () => latestData.slice().sort((a: any, b: any) => b.value - a.value),
     [],
   );
 
@@ -141,7 +141,7 @@ export default function GenerationMixBar({ latestData }: any) {
             // onMouseEnter={(_, index) => setActiveIndex(index)}
             // onMouseLeave={() => setActiveIndex(null)}
           >
-            {sortedData.map((entry, index) => {
+            {sortedData.map((entry: any, index: any) => {
               const baseColor = COLORS[index];
               const fill = index === activeIndex ? `${baseColor}cc` : baseColor;
               return <Cell key={`cell-${index}`} fill={fill} />;
@@ -149,7 +149,7 @@ export default function GenerationMixBar({ latestData }: any) {
             <LabelList
               dataKey="percent"
               position="right"
-              formatter={(v) => `${v}%`}
+              formatter={(v: any) => `${v}%`}
               fill={labelColor}
               fontSize={13}
               fontWeight={500}
