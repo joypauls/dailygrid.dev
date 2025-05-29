@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { MobileNav } from "@/app/components/MobileNav";
+import UnderlineLink from "@/components/links/UnderlineLink";
 import { Zap, Battery } from "lucide-react";
 
 export function Navbar() {
@@ -15,7 +16,7 @@ export function Navbar() {
             href="/"
             className="flex items-center gap-2 font-semibold text-lg"
           >
-            <Zap className="w-5 h-5 text-green-500" />
+            <Zap className="w-6 h-6 text-green-500" />
             {/* <Battery className="w-6 h-6 text-green-500" /> */}
             Daily Grid
           </Link>
@@ -24,12 +25,9 @@ export function Navbar() {
         {/* Right: desktop nav + theme toggle */}
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-4">
-            <Link
-              href="/about"
-              className="text-sm text-muted-foreground hover:underline"
-            >
+            <UnderlineLink href="/about" className="text-sm border-none">
               About
-            </Link>
+            </UnderlineLink>
             {/* <a
               href="https://github.com/youruser/gridpulse.dev"
               className="text-sm text-muted-foreground hover:underline"

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   // ! copy to /favicon folder
   icons: {
     icon: "/favicon/favicon.ico",
-    shortcut: "/favicon/favicon-16x16.png",
+    shortcut: "/favicon/favicon-96x96.png",
     apple: "/favicon/apple-touch-icon.png",
   },
   manifest: `/favicon/site.webmanifest`,
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/images/og.jpg`],
+    images: [`${siteConfig.url}/images/og.png`],
     // creator: '@th_clarence',
   },
   // authors: [

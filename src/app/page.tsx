@@ -123,7 +123,7 @@ export default function HomePage() {
                   {latest.renewables.gigawatthours} GWh
                 </div>
                 <div className="text-muted-foreground">
-                  Share of electricity generation
+                  Electricity generation
                 </div>
               </CardFooter>
             </Card>
@@ -150,7 +150,7 @@ export default function HomePage() {
                   {latest.nuclear.gigawatthours} GWh
                 </div>
                 <div className="text-muted-foreground">
-                  Share of electricity generation
+                  Electricity generation
                 </div>
               </CardFooter>
             </Card>
@@ -176,7 +176,7 @@ export default function HomePage() {
                   {latest.fossil_fuels.gigawatthours} GWh
                 </div>
                 <div className="text-muted-foreground">
-                  Share of electricity generation
+                  Electricity generation
                 </div>
               </CardFooter>
             </Card>

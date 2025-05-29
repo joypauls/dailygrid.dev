@@ -24,13 +24,13 @@ export function MobileNav() {
           >
             About
           </Link>
-          <Link
+          {/* <Link
             href="https://github.com/youruser/gridpulse.dev"
             target="_blank"
             className="block text-lg font-medium hover:underline"
           >
             GitHub
-          </Link>
+          </Link> */}
         </div>
       </SheetContent>
     </Sheet>
