@@ -12,11 +12,8 @@ export function Navbar() {
       <div className="w-full max-w-7xl px-4 py-3 flex items-center justify-between">
         {/* Left: Brand and mobile menu */}
         <div className="flex items-center gap-2">
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-semibold text-lg"
-          >
-            <Zap className="w-6 h-6 text-green-500" />
+          <Link href="/" className="flex items-center font-semibold text-lg">
+            <Zap className="w-6 h-6 text-green-500 mr-1" />
             {/* <Battery className="w-6 h-6 text-green-500" /> */}
             Daily Grid
           </Link>
