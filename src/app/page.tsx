@@ -34,33 +34,33 @@ import { Badge } from "@/components/ui/badge";
 import GenerationMixBarChart from "@/app/components/GenerationMixBarChart";
 import { GenerationTrendChart } from "@/app/components/GenerationTrendChart";
 import { Navbar } from "@/app/components/Navbar";
-
-import data from "@/data/daily_energy_mix_latest.json";
-const latest = data.latest;
-const barChartData = [
-  "solar",
-  "wind",
-  "hydro",
-  "nuclear",
-  "coal",
-  "natural_gas",
-  "other",
-].map((source: string) => {
-  const item = latest[source as keyof typeof latest] as any;
-  return {
-    source: item.source,
-    value: item.megawatthours,
-    gigawatthours: item.gigawatthours,
-    percent: item.percent,
-  };
-});
-const historyData = data.history.total;
-
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
+import { useEnergyData } from "@/app/hooks/useEnergyData";
 
 export default function HomePage() {
+  const { data, loading, error } = useEnergyData();
+  // if (loading) return <p>Loading...</p>;
+  // if (error || !data) return <p>Error loading energy data.</p>;
+  if (!data) return null;
+
+  const barChartData = [
+    "solar",
+    "wind",
+    "hydro",
+    "nuclear",
+    "coal",
+    "natural_gas",
+    "other",
+  ].map((source: string) => {
+    const item = data.latest[source as keyof typeof data.latest] as any;
+    return {
+      source: item.source,
+      value: item.megawatthours,
+      gigawatthours: item.gigawatthours,
+      percent: item.percent,
+    };
+  });
+  const historyData = data.history.total;
+
   return (
     <main>
       <Head>
@@ -77,13 +77,13 @@ export default function HomePage() {
             <span className="flex items-center">
               <Calendar className="w-6 h-6 pr-2" />
               <p className="text-sm font-bold pr-2">Date:</p>
-              <p className="text-sm pr-6">{latest.date}</p>
+              <p className="text-sm pr-6">{data.latest.date}</p>
             </span>
             <span className="flex items-center">
               {/* <Clock className="w-6 h-6 pr-2" /> */}
               <RefreshCw className="w-6 h-6 pr-2" />
               <p className="text-sm font-bold pr-2">Updated:</p>
-              <p className="text-sm pr-6">{latest.updated}</p>
+              <p className="text-sm pr-6">{data.latest.updated}</p>
             </span>
           </div>
           {/* </Card>
@@ -94,7 +94,7 @@ export default function HomePage() {
               <CardHeader className="relative">
                 <CardDescription>Renewables</CardDescription>
                 <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-                  {latest.renewables.percent}%
+                  {data.latest.renewables.percent}%
                 </CardTitle>
                 <div className="absolute right-4 top-4">
                   {/* <Badge
@@ -120,7 +120,7 @@ export default function HomePage() {
               </CardHeader>
               <CardFooter className="flex-col items-start gap-1 text-sm">
                 <div className="line-clamp-1 flex gap-2 font-medium">
-                  {latest.renewables.gigawatthours} GWh
+                  {data.latest.renewables.gigawatthours} GWh
                 </div>
                 <div className="text-muted-foreground">
                   Electricity generation
@@ -132,7 +132,7 @@ export default function HomePage() {
               <CardHeader className="relative">
                 <CardDescription>Nuclear</CardDescription>
                 <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-                  {latest.nuclear.percent}%
+                  {data.latest.nuclear.percent}%
                 </CardTitle>
                 <div className="absolute right-4 top-4">
                   {/* <Badge
@@ -147,7 +147,7 @@ export default function HomePage() {
               <CardFooter className="flex-col items-start gap-1 text-sm">
                 <div className="line-clamp-1 flex gap-2 font-medium">
                   {/* Trending up this month <TrendingUpIcon className="size-4" /> */}
-                  {latest.nuclear.gigawatthours} GWh
+                  {data.latest.nuclear.gigawatthours} GWh
                 </div>
                 <div className="text-muted-foreground">
                   Electricity generation
@@ -159,7 +159,7 @@ export default function HomePage() {
               <CardHeader className="relative">
                 <CardDescription>Fossil Fuels</CardDescription>
                 <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-                  {latest.fossil_fuels.percent}%
+                  {data.latest.fossil_fuels.percent}%
                 </CardTitle>
                 <div className="absolute right-4 top-4">
                   {/* <Badge
@@ -173,7 +173,7 @@ export default function HomePage() {
               </CardHeader>
               <CardFooter className="flex-col items-start gap-1 text-sm">
                 <div className="line-clamp-1 flex gap-2 font-medium">
-                  {latest.fossil_fuels.gigawatthours} GWh
+                  {data.latest.fossil_fuels.gigawatthours} GWh
                 </div>
                 <div className="text-muted-foreground">
                   Electricity generation
