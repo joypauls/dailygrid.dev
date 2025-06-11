@@ -22,9 +22,9 @@ export function Navbar() {
         {/* Right: desktop nav + theme toggle */}
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-4">
-            <UnderlineLink href="/about" className="text-sm border-none">
+            <Link href="/about" className="text-sm">
               About
-            </UnderlineLink>
+            </Link>
             {/* <a
               href="https://github.com/youruser/gridpulse.dev"
               className="text-sm text-muted-foreground hover:underline"

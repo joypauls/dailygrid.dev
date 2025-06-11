@@ -20,7 +20,7 @@ export default function AboutPage() {
       <Navbar />
       <section className="min-h-screen flex flex-col justify-between">
         <div>
-          <main className="max-w-3xl mx-auto px-4 py-4">
+          <main className="max-w-3xl mx-auto px-6 py-4">
             <h1 className="text-3xl font-bold mb-4">About</h1>
             <p className=" mb-8 text-lg">
               <strong>Daily Grid</strong> is a dashboard that allows users to
@@ -33,7 +33,7 @@ export default function AboutPage() {
             <Separator className="mb-8" />
 
             <section className="mb-10">
-              <h2 className="text-xl font-semibold mb-2">📈 Metric Cards</h2>
+              <h2 className="text-xl font-semibold mb-2">Metric Cards</h2>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                 <li>
                   <strong>Energy Mix Chart</strong>: Breakdown of generation
@@ -44,16 +44,11 @@ export default function AboutPage() {
                   <strong>Daily Generation Trend</strong>: Recent changes in
                   daily electricity output, measured in gigawatt-hours (GWh).
                 </li>
-                <li>
-                  <strong>Carbon Intensity (coming soon)</strong>: Grams of CO₂
-                  per kilowatt-hour generated, giving a sense of grid
-                  "cleanliness".
-                </li>
               </ul>
             </section>
 
             <section className="mb-10">
-              <h2 className="text-xl font-semibold mb-2">📊 Charts</h2>
+              <h2 className="text-xl font-semibold mb-2">Charts</h2>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                 <li>
                   <strong>Energy Mix Chart</strong>: Breakdown of generation
@@ -64,16 +59,11 @@ export default function AboutPage() {
                   <strong>Daily Generation Trend</strong>: Recent changes in
                   daily electricity output, measured in gigawatt-hours (GWh).
                 </li>
-                <li>
-                  <strong>Carbon Intensity (coming soon)</strong>: Grams of CO₂
-                  per kilowatt-hour generated, giving a sense of grid
-                  "cleanliness".
-                </li>
               </ul>
             </section>
 
             <section className="mb-10">
-              <h2 className="text-xl font-semibold mb-2">🛠️ Geography</h2>
+              <h2 className="text-xl font-semibold mb-2">Geography</h2>
               <p className="text-muted-foreground leading-relaxed">
                 All data is sourced from the{" "}
                 <a
@@ -91,7 +81,7 @@ export default function AboutPage() {
             </section>
 
             <section className="mb-10">
-              <h2 className="text-xl font-semibold mb-2">🛠️ Data Source</h2>
+              <h2 className="text-xl font-semibold mb-2">Data Source</h2>
               <p className="text-muted-foreground leading-relaxed">
                 All data is sourced from the{" "}
                 <a

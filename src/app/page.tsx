@@ -3,7 +3,7 @@
 import Head from "next/head";
 import * as React from "react";
 import "@/lib/env";
-import { Clock, Calendar, RefreshCw } from "lucide-react";
+import { Clock, Calendar, RefreshCw, Leaf, Atom, Fuel } from "lucide-react";
 
 import ArrowLink from "@/components/links/ArrowLink";
 import ButtonLink from "@/components/links/ButtonLink";
@@ -73,7 +73,7 @@ export default function HomePage() {
 
           {/* <div className="grid grid-cols-1 gap-4 p-4 w-full">
             <Card className="@container/card"> */}
-          <div className="flex flex-col sm:flex-row justify-start p-4 w-full max-w-5xl">
+          <div className="flex flex-col sm:flex-row justify-start py-4 px-6 w-full max-w-5xl">
             <span className="flex items-center">
               <Calendar className="w-6 h-6 pr-2" />
               <p className="text-sm font-bold pr-2">Date:</p>
@@ -89,10 +89,15 @@ export default function HomePage() {
           {/* </Card>
           </div> */}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 w-full max-w-5xl">
-            <Card className="@container/card">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4 px-6 w-full max-w-5xl">
+            <Card className="@container/card rounded-lg">
               <CardHeader className="relative">
-                <CardDescription>Renewables</CardDescription>
+                <CardDescription className="">
+                  <div className="flex items-center justify-center gap-1">
+                    <Leaf />
+                    Renewables
+                  </div>
+                </CardDescription>
                 <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
                   {data.latest.renewables.percent}%
                 </CardTitle>
@@ -128,9 +133,14 @@ export default function HomePage() {
               </CardFooter>
             </Card>
 
-            <Card className="@container/card">
+            <Card className="@container/card rounded-lg">
               <CardHeader className="relative">
-                <CardDescription>Nuclear</CardDescription>
+                <CardDescription className="">
+                  <div className="flex items-center justify-center gap-1">
+                    <Atom />
+                    Nuclear
+                  </div>
+                </CardDescription>
                 <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
                   {data.latest.nuclear.percent}%
                 </CardTitle>
@@ -155,9 +165,14 @@ export default function HomePage() {
               </CardFooter>
             </Card>
 
-            <Card className="@container/card">
+            <Card className="@container/card rounded-lg">
               <CardHeader className="relative">
-                <CardDescription>Fossil Fuels</CardDescription>
+                <CardDescription className="">
+                  <div className="flex items-center justify-center gap-1">
+                    <Fuel />
+                    Fossil Fuels
+                  </div>
+                </CardDescription>
                 <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
                   {data.latest.fossil_fuels.percent}%
                 </CardTitle>
@@ -182,8 +197,8 @@ export default function HomePage() {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 p-4 w-full max-w-5xl hidden md:block">
-            <Card className="@container/card">
+          <div className="grid grid-cols-1 gap-4 py-4 px-6 w-full max-w-5xl hidden md:block">
+            <Card className="@container/card rounded-lg">
               <CardHeader className="flex items-start">
                 <CardTitle className="font-semibold">Generation Mix</CardTitle>
                 <CardDescription className="">
@@ -210,8 +225,8 @@ export default function HomePage() {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 p-4 w-full max-w-5xl hidden md:block">
-            <Card className="@container/card">
+          <div className="grid grid-cols-1 gap-4 py-4 px-6 w-full max-w-5xl hidden md:block">
+            <Card className="@container/card rounded-lg">
               <CardHeader className="flex items-start">
                 <CardTitle className="font-semibold">14-Day History</CardTitle>
                 <CardDescription className="">
