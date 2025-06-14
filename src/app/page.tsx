@@ -90,11 +90,11 @@ export default function HomePage() {
           </div> */}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4 px-6 w-full max-w-5xl">
-            <Card className="@container/card rounded-lg">
+            <Card className="@container/card rounded-md">
               <CardHeader className="relative">
                 <CardDescription className="">
                   <div className="flex items-center justify-center gap-1">
-                    <Leaf />
+                    <Leaf className="h-5" />
                     Renewables
                   </div>
                 </CardDescription>
@@ -133,11 +133,11 @@ export default function HomePage() {
               </CardFooter>
             </Card>
 
-            <Card className="@container/card rounded-lg">
+            <Card className="@container/card rounded-md">
               <CardHeader className="relative">
                 <CardDescription className="">
                   <div className="flex items-center justify-center gap-1">
-                    <Atom />
+                    <Atom className="h-5" />
                     Nuclear
                   </div>
                 </CardDescription>
@@ -165,11 +165,11 @@ export default function HomePage() {
               </CardFooter>
             </Card>
 
-            <Card className="@container/card rounded-lg">
+            <Card className="@container/card rounded-md">
               <CardHeader className="relative">
                 <CardDescription className="">
                   <div className="flex items-center justify-center gap-1">
-                    <Fuel />
+                    <Fuel className="h-5" />
                     Fossil Fuels
                   </div>
                 </CardDescription>
@@ -198,7 +198,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 gap-4 py-4 px-6 w-full max-w-5xl hidden md:block">
-            <Card className="@container/card rounded-lg">
+            <Card className="@container/card rounded-md">
               <CardHeader className="flex items-start">
                 <CardTitle className="font-semibold">Generation Mix</CardTitle>
                 <CardDescription className="">
@@ -226,7 +226,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 gap-4 py-4 px-6 w-full max-w-5xl hidden md:block">
-            <Card className="@container/card rounded-lg">
+            <Card className="@container/card rounded-md">
               <CardHeader className="flex items-start">
                 <CardTitle className="font-semibold">14-Day History</CardTitle>
                 <CardDescription className="">
