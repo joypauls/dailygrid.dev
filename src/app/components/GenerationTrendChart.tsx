@@ -101,7 +101,7 @@ export function GenerationTrendChart({ historyData }: any) {
           data={historyData}
           margin={{ top: 10, right: 70, left: 10, bottom: 10 }}
         >
-          <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
+          {/* <CartesianGrid stroke={gridColor} strokeDasharray="3 3" /> */}
           <XAxis
             dataKey="date"
             tick={{ fill: labelColor, fontSize: 12, dy: 12 }}
@@ -117,8 +117,9 @@ export function GenerationTrendChart({ historyData }: any) {
             domain={["auto", "auto"]}
             width={90}
             tickCount={5}
+            padding={{ top: 20, bottom: 20 }}
           />
-          <Tooltip content={<CustomTooltip />} cursor={false} />
+          <Tooltip content={<CustomTooltip />} cursor={true} />
           <Line
             type="monotone"
             dataKey="gigawatthours"
