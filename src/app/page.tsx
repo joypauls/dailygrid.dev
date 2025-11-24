@@ -76,7 +76,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row justify-start py-4 px-6 w-full max-w-5xl">
             <span className="flex items-center">
               <Calendar className="w-6 h-6 pr-2" />
-              <p className="text-sm font-bold pr-2">Date:</p>
+              <p className="text-sm font-bold pr-2">Latest Date:</p>
               <p className="text-sm pr-6">{data.latest.date}</p>
             </span>
             <span className="flex items-center">

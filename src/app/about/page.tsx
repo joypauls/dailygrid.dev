@@ -108,10 +108,11 @@ export default function AboutPage() {
                   U.S. Energy Information Administration (EIA)
                 </a>
                 , specifically using their open APIs. Our backend fetches,
-                aggregates and normalizes it every morning. The home page
+                aggregates, and normalizes it every morning. The home page
                 displays information on data freshness at the top. Since the
                 dashboard currently shows daily metrics, the most recent data
-                will be from the previous day.
+                will be from the previous day. Sometimes, the data source can be
+                more than a day latent but we still check daily.
               </p>
             </section>
 
