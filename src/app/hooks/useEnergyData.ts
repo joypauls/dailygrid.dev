@@ -26,7 +26,9 @@ export function useEnergyData() {
         );
         if (!res.ok) throw new Error("Failed to load energy data");
         const json = await res.json();
-        setData(json);
+        // setData(json);
+        // TODO: CHANGE THIS
+        setData(json.US48);
       } catch (err: any) {
         setError(err);
       } finally {
