@@ -76,7 +76,7 @@ export default function GenerationMixBar({ latestData }: any) {
 
   const sortedData = useMemo(
     () => latestData.slice().sort((a: any, b: any) => b.value - a.value),
-    [],
+    [latestData],
   );
 
   return (

@@ -30,14 +30,22 @@ import {
 } from "@/components/ui/chart";
 import { TrendingDownIcon, TrendingUpIcon, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 import GenerationMixBarChart from "@/app/components/GenerationMixBarChart";
 import { GenerationTrendChart } from "@/app/components/GenerationTrendChart";
 import { Navbar } from "@/app/components/Navbar";
-import { useEnergyData } from "@/app/hooks/useEnergyData";
+import { useEnergyData, Region, REGIONS } from "@/app/hooks/useEnergyData";
 
 export default function HomePage() {
-  const { data, loading, error } = useEnergyData();
+  const [selectedRegion, setSelectedRegion] = React.useState<Region>("US48");
+  const { data, loading, error } = useEnergyData({ region: selectedRegion });
   // if (loading) return <p>Loading...</p>;
   // if (error || !data) return <p>Error loading energy data.</p>;
   if (!data) return null;
@@ -70,6 +78,30 @@ export default function HomePage() {
       <section className="min-h-screen flex flex-col justify-between">
         <div className="flex flex-col items-center justify-center text-center">
           {/* <DonutChart /> */}
+
+          {/* Region Selector */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 px-6 w-full max-w-5xl gap-4">
+            <div className="flex items-center gap-2">
+              <label htmlFor="region-select" className="text-sm font-medium">
+                Region:
+              </label>
+              <Select
+                value={selectedRegion}
+                onValueChange={(value) => setSelectedRegion(value as Region)}
+              >
+                <SelectTrigger className="w-[200px]" id="region-select">
+                  <SelectValue placeholder="Select region" />
+                </SelectTrigger>
+                <SelectContent>
+                  {REGIONS.map((region) => (
+                    <SelectItem key={region.value} value={region.value}>
+                      {region.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
 
           {/* <div className="grid grid-cols-1 gap-4 p-4 w-full">
             <Card className="@container/card"> */}

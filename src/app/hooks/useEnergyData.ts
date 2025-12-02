@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 
-// type EnergyData = {
-//   date: string;
-//   fuel_types: {
-//     source: string;
-//     megawatthours: number;
-//     percent: number;
-//   }[];
-//   total: {
-//     megawatthours: number;
-//     gigawatthours: number;
-//   };
-// };
+export type Region = "US48" | "CISO";
 
-export function useEnergyData() {
-  const [data, setData] = useState<any>(null);
+export const REGIONS: { value: Region; label: string }[] = [
+  { value: "US48", label: "US Lower 48" },
+  { value: "CISO", label: "California ISO" },
+];
+
+type UseEnergyDataProps = {
+  region: Region;
+};
+
+export function useEnergyData({ region }: UseEnergyDataProps) {
+  const [allData, setAllData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -26,9 +24,7 @@ export function useEnergyData() {
         );
         if (!res.ok) throw new Error("Failed to load energy data");
         const json = await res.json();
-        // setData(json);
-        // TODO: CHANGE THIS
-        setData(json.US48);
+        setAllData(json);
       } catch (err: any) {
         setError(err);
       } finally {
@@ -39,5 +35,7 @@ export function useEnergyData() {
     fetchData();
   }, []);
 
-  return { data, loading, error };
+  const data = allData?.[region] || null;
+
+  return { data, loading, error, allData };
 }
