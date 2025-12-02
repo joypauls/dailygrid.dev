@@ -41,7 +41,8 @@ import {
 import GenerationMixBarChart from "@/app/components/GenerationMixBarChart";
 import { GenerationTrendChart } from "@/app/components/GenerationTrendChart";
 import { Navbar } from "@/app/components/Navbar";
-import { useEnergyData, Region, REGIONS } from "@/app/hooks/useEnergyData";
+import { useEnergyData } from "@/app/hooks/useEnergyData";
+import { Region, REGIONS } from "@/constant/regions";
 
 export default function HomePage() {
   const [selectedRegion, setSelectedRegion] = React.useState<Region>("US48");
